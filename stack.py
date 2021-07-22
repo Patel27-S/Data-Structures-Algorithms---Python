@@ -1,8 +1,8 @@
-import linked_list as LL
+from linked_list import Node
 
 # Implementing a Stack using 'LinkedList'.
 
-class Stack(LL.Node):
+class Stack(Node):
 
 
     def __init__(self,top_ptr = None):
@@ -17,10 +17,10 @@ class Stack(LL.Node):
         '''
         # When we have to push, first thing that we need
         # to do is making a node. And, storing the data into it
-        node = LL.Node(data = data)
+        node = Node(data = data)
 
         # If the stack is empty, then we have to put the Node's
-        # instance into it. 
+        # instance into it.
         if self.top_ptr == None:
             self.top_ptr = node
 
@@ -30,7 +30,7 @@ class Stack(LL.Node):
             self.top_ptr = node
         # Time Complexity for push() operation above is O(1).
 
-    
+
     def pop(self):
         '''
         This method will pop the top most element of the stack/ the most recently
@@ -40,14 +40,14 @@ class Stack(LL.Node):
         if self.top_ptr == None:
             print('The stack is empty.')
             return
-        
+
         # Now, the stack is not empty.
         else:
             temp_ptr = self.top_ptr
             self.top_ptr = self.top_ptr.next
-            temp_ptr = None 
+            temp_ptr = None
         # Time Complexity for pop() function is O(1).
-    
+
 
     def peek(self, index):
         '''
@@ -67,10 +67,11 @@ class Stack(LL.Node):
         temp_ptr = self.top_ptr
         while temp_ptr != None:
             count += 1
+            temp_ptr = temp_ptr.next
         return count
         # Time Complexity of length() is O(n).
 
-            
+
 
 
 
@@ -87,7 +88,7 @@ class Stack(LL.Node):
         # Time Complexity of display() function is O(n).
 
 
-# Testing :- 
+# Testing :-
 
 s1 = Stack()
 s1.push('Smit')
