@@ -5,6 +5,7 @@ class Node:
 
 
 class LinkedList:
+
     def __init__(self):
         self.head_ptr = None
 
@@ -138,49 +139,78 @@ class LinkedList:
     def delete_at_position(self, position):
 
         temp_ptr = self.head_ptr
-
-        if position == 1:
-            self.head_ptr = self.head_ptr.next
-            temp_ptr = None
+        
+        # If we want to delete the node at the 1st position :
+        # First we check if the linkedlist is empty.
+        if self.head_ptr is not None:
+            if position == 1:
+                self.head_ptr = self.head_ptr.next
+                temp_ptr = None
         else:
+            
             before_deletion_stop = position-2
+
             while before_deletion_stop:
                 before_deletion_stop -= 1
+                if temp_ptr == None or temp_ptr.next == None:
+                    return 
+                    break
                 temp_ptr = temp_ptr.next
             temp_ptr.next = temp_ptr.next.next
             temp_ptr.next = None
 
-    def sort(self):
+    # def sort(self):
+    #     '''
+    #     This method is used to sort a LinkedList.
+    #     '''
+    #     # The below method is not correct and I have to improve it.
+    #     first_ptr = self.head_ptr
+    #     second_ptr = self.head_ptr.next
+
+    #     while second_ptr != None:
+    #         if first_ptr.data < second_ptr.data:
+    #             first_ptr.data, second_ptr.data = second_ptr.data, first_ptr.data
+    #         first_ptr = first_ptr.next
+    #         second_ptr = second_ptr.next
+    
+
+
+    def remove_from_end(self, position):
         '''
-        This method is used to sort a LinkedList.
+        This method provides a feature of removing a node
+        from the end.
         '''
-        # The below method is not correct and I have to improve it.
-        first_ptr = self.head_ptr
-        second_ptr = self.head_ptr.next
+        # In a linkedlist, we can only traverse forwards using pointers.
+        # Hence, despite of the data being given to remove from the nth node,
+        # from end. We have to traverse from front of the linkedlist to using
+        # a temperory pointer until a node before removal node and do the 
+        # operations of setting the next's as next's next and next's next as none.
+        temp_ptr = self.head_ptr
 
-        while second_ptr != None:
-            if first_ptr.data < second_ptr.data:
-                first_ptr.data, second_ptr.data = second_ptr.data, first_ptr.data
-            first_ptr = first_ptr.next
-            second_ptr = second_ptr.next
+        count = self.length() - position - 1
 
-
+        while count:
+            count -= 1
+            temp_ptr = temp_ptr.next
+        temp_ptr.next = temp_ptr.next.next
+        temp_ptr.next.next = None
+        # The Time Complexity of above method is O(n), Space Complexity is O(1).
+        
 
 
 # Testing :-
 
-l1 = LinkedList()
 
+l1 = LinkedList()
 l1.insert_at_beginning(1)
 l1.insert_at_end(2)
 l1.insert_at_end(3)
 l1.insert_at_end(4)
 l1.insert_at_end(5)
-#l1.delete_at_position(1)
-
-l1.sort()
+l1.delete_at_position(3)
+print()
 l1.display()
 
 print()
-print()
 print('The length of LinkedList is : {}'.format(l1.length()))
+print()
