@@ -1,3 +1,5 @@
+
+
 class Node:
     def __init__(self, data=None, next=None):
         self.data = data
@@ -18,8 +20,12 @@ class LinkedList:
         '''
         # First of all, I will create a new node.
         node = Node(data)
-        node.next = self.head_ptr
-        self.head_ptr = node
+
+        if self.head_ptr == None:
+            self.head_ptr = node
+        else:
+            node.next = self.head_ptr
+            self.head_ptr = node
         # Time Complexity = O(1).
 
 
@@ -153,11 +159,13 @@ class LinkedList:
             while before_deletion_stop:
                 before_deletion_stop -= 1
                 if temp_ptr == None or temp_ptr.next == None:
-                    return 
-                    break
+                    return
                 temp_ptr = temp_ptr.next
+
+            hanger_ptr = temp_ptr.next    
             temp_ptr.next = temp_ptr.next.next
             temp_ptr.next = None
+            hanger_ptr = None
 
     # def sort(self):
     #     '''
@@ -195,22 +203,32 @@ class LinkedList:
         temp_ptr.next = temp_ptr.next.next
         temp_ptr.next.next = None
         # The Time Complexity of above method is O(n), Space Complexity is O(1).
-        
 
+
+    def reverse_linked_list(self):
+        # Here the main logic is that we have to reverse the pointer directions
+        #  in order to make the linkedlist reversed.
+        # We can do so with the help of three pointers as shown below:
+        p1 = None
+        p2 = self.head_ptr
+        p3 = p2.next
+        while p2 is not None:
+            p3 = p2.next
+            p2.next = p1
+            p1 = p2
+            p2 = p3
+    
 
 # Testing :-
 
-
 l1 = LinkedList()
-l1.insert_at_beginning(1)
-l1.insert_at_end(2)
-l1.insert_at_end(3)
-l1.insert_at_end(4)
-l1.insert_at_end(5)
-l1.delete_at_position(3)
-print()
-l1.display()
 
-print()
-print('The length of LinkedList is : {}'.format(l1.length()))
-print()
+l1.insert_at_beginning(5)
+l1.insert_at_beginning(6)
+l1.insert_at_end(7)
+l1.insert_at_end(10)
+l1.insert_at_position(4,11)
+l1.delete_at_end()
+l1.delete_at_end()
+
+l1.display()
