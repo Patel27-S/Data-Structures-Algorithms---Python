@@ -140,26 +140,13 @@ class BinarySearchTree:
             return
 
     
-    def inorder_traversal(self):
-        
-        # If BST is empty, then we don't
-        # traverse or display :
-        if not self.ptr_to_root:
-            return None
-
-        else: 
-            # If BST is not empty
-
-            temp_ptr = self.ptr_to_root
-
-            if temp_ptr.left_ptr:
-                temp_ptr.left_ptr.in_order_traversal()
-            
-            print(temp_ptr.data)
-
-            if temp_ptr.right_ptr:
-                temp_ptr.right_ptr.in_order_traversal()
-
+    # def inOrderTravsersal(self, self.ptr_to_root):
+    #     inOrder_list = []
+    #     if self.ptr_to_root:
+    #         inOrderTraversal(self.ptr_to_root.left_ptr)
+    #         inOrder_list.append(self.ptr_to_root.data)
+    #         inOrderTraversal
+    #     return inOrder_list
                 
         
 

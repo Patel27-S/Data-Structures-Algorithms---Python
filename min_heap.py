@@ -2,11 +2,11 @@
 
 def min_heapify(list, index):
 
-    # First thing that we will do is
-    # find out the smallest of list[index]
+    # First thing that we will do is010
+    # find out the smallest of list[index]                             
     # , list[2*index +1], list[2*index +2]
     smallest = None
-
+ 
     if list[index] > list[2*index +1]:
         smallest = list[2*index +1]
     else:
